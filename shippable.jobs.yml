@@ -1,0 +1,74 @@
+jobs:
+# 
+# # jobs for pipelines from CI thru PROD environment
+#
+# ################################
+#
+# # generate manifest
+   - name: dev-manifest
+     type: manifest
+     steps:
+       - IN: docker-image
+       - IN: docker-options
+       - TASK: managed
+#
+# # # increment release version
+# #   - name: hello-rel
+# #     type: release
+# #     steps:
+# #       - IN: hello-ver
+# #       - IN: hello-test-ecs
+# #         trigger: true
+# #       - TASK: managed
+# #         bump: patch
+#
+# # TEST deployment to Triton
+   - name: deploy-to-dev
+     type: deploy
+     steps:
+       - IN: dev-manifest
+       - IN: joyent-dev-sw1
+#       - IN: dev-params
+#         applyTo: nginx-image
+#       - IN: nginx-dev-params
+#         applyTo: nginx-image
+       - TASK: managed
+#         deployMethod: upgrade
+#     flags:
+#       - hello
+#
+# # PROD deployment - Amazon ECS
+#   - name: hello-prod-ecs
+#     type: deploy
+#     steps:
+#       # - IN: demo-rel
+#       #   trigger: false
+#       #   versionName: v1.0.2
+#       - IN: hello-test-ecs
+#         switch: off
+#       - IN: hello-env-prod-ecs
+#       - IN: hello-params-prod
+#         applyTo: hello-img
+#       - IN: hello-scaler-prod
+#       - IN: trigger-deploy-prod
+#       - TASK: managed
+#     flags:
+#       - hello
+#
+# # alternatl deployment - Google GKE
+#   - name: hello-prod-gke
+#     type: deploy
+#     steps:
+#       # - IN: demo-rel
+#       #   trigger: false
+#       #   versionName: v1.0.2
+#       - IN: hello-test-ecs
+#         switch: off
+#       - IN: hello-env-gke
+#       - IN: hello-params-prod
+#         applyTo: hello-img
+#       - IN: hello-scaler-prod
+#       - IN: trigger-deploy-prod
+#       - TASK: managed
+#     flags:
+#       - hello

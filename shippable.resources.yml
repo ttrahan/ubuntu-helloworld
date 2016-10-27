@@ -1,0 +1,119 @@
+resources:
+   - name: docker-image
+     type: image
+     integration: builduser-quay
+     pointer:
+       sourceName: "quay.io/baselibrary/ubuntu"
+       isPull: true
+     seed:
+       versionName: "latest"
+
+# # set application version seed
+#   - name: nginx-ver
+#     type: version
+#     seed:
+#       versionName: v2
+#     flags:
+#       - nginx-image-version
+#
+#
+# ################################
+#
+# # TEST resources
+#
+# # add TEST env - Triton cluster
+   - name: joyent-dev-sw1
+     type: cluster
+     integration: joyent-dev-sw1
+     pointer:
+       region: "us-sw-1"
+#
+# # Docker Image Options
+   - name: docker-options
+     type: dockerOptions
+     version:
+       memory: 128
+       cpuShares: 128
+#       portMappings:
+#         - 80:80
+#       publishAllPorts : true
+       cmd:
+         - /bin/sh -c 'while true; do echo hello world; sleep 1; done'
+#       labels:
+#         triton.cns.services: lb-sw1-dv
+#       dnsSearch:
+#         - "ae592553-251a-4860-8828-a377aed9f636.us-sw-1.cns.joyent.com"
+#       links:
+#         - consul:consul
+#     flags:
+#       - demo-docker-opts
+#
+# # env vars for dev
+#   - name: dev-params
+#     type: params
+#     version:
+#       params:
+#         ENVIRONMENT: "dev"
+#         CST_ENV: "dev"
+#         VAULT_ADDR: "http://vaultdev.svc.ae592553-251a-4860-8828-a377aed9f636.us-sw-1.cns.joyent.com:8200"
+#         APPMODULE: "nginx"
+#         ENABLE_LOGGLY: "false"
+#         CONSUL: "consuldev.svc.ae592553-251a-4860-8828-a377aed9f636.us-sw-1.cns.joyent.com"
+#   - name: nginx-dev-params
+#     type: params
+#     version:
+#       params:
+#         APPMODULE: "nginx"
+#         ENABLE_LOGGLY: "false"
+#     flags:
+#       - dev-environment
+#
+# ################################
+#
+# # PROD resources
+#
+# # add PROD env - AWS cluster
+#   - name: hello-env-prod-ecs
+#     type: cluster
+#     integration: ttrahan-aws
+#     pointer:
+#       sourceName : "demo-shippable-ecs"
+#       region: "us-east-1"
+#     flags:
+#       - hello
+#
+# # add PROD env - AWS cluster
+#   - name: hello-env-gke
+#     type: cluster
+#     integration: ttrahan-gke
+#     pointer:
+#       sourceName : "demo-shippable-gke"
+#       region: "us-east-1"
+#     flags:
+#       - hello
+#
+# # PROD replica controller
+#   - name: hello-scaler-prod
+#     type: replicas
+#     version:
+#       count: 2
+#     flags:
+#       - hello
+#
+# # Docker Image Options for VISUALIZER
+#   - name: hello-img-opts-prod
+#     type: dockerOptions
+#     version:
+#       memory: 512
+#       cpuShares: 512
+#     flags:
+#       - hello
+#
+# # env vars for VISUALIZER
+#   - name: hello-params-prod
+#     type: params
+#     version:
+#       params:
+#         ENVIRONMENT: "prod"
+#     flags:
+#       - hello
