@@ -38,7 +38,7 @@ resources:
 #         - 80:80
 #       publishAllPorts : true
        cmd:
-         - /bin/sh -c 'while true; do echo hello world; sleep 1; done'
+         - /bin/sh 'sleep 300000'
       labels:
         com.joyent.package=g4-highcpu-128M
 #         triton.cns.services: lb-sw1-dv
