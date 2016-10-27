@@ -1,9 +1,9 @@
 resources:
    - name: docker-image
      type: image
-     integration: builduser-quay
+     integration: ttrahan-dh
      pointer:
-       sourceName: "quay.io/baselibrary/ubuntu"
+       sourceName: "ubuntu"
        isPull: true
      seed:
        versionName: "latest"
@@ -24,9 +24,9 @@ resources:
 # # add TEST env - Triton cluster
    - name: joyent-dev-sw1
      type: cluster
-     integration: joyent-dev-sw1
+     integration: ttrahan-tpc
      pointer:
-       region: "us-sw-1"
+       region: "us-west-1"
 #
 # # Docker Image Options
    - name: docker-options
