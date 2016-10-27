@@ -33,7 +33,7 @@ resources:
      type: dockerOptions
      version:
        memory: 128
-       cpuShares: 128
+       cpuShares: 1
 #       portMappings:
 #         - 80:80
 #       publishAllPorts : true
