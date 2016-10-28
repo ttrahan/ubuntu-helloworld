@@ -32,15 +32,15 @@ resources:
    - name: docker-options
      type: dockerOptions
      version:
+       labels:
+         com.joyent.package: g4-highcpu-128M
+       cmd:
+         - /bin/sh tail -f /dev/null -c 'while true; do echo hello world; sleep 1; done'
       #  memory: 128
       #  cpuShares: 1
 #       portMappings:
 #         - 80:80
 #       publishAllPorts : true
-       cmd:
-         - /bin/sh tail -f /dev/null -c 'while true; do echo hello world; sleep 1; done'
-       labels:
-         com.joyent.package: g4-highcpu-128M
 #         triton.cns.services: lb-sw1-dv
 #       dnsSearch:
 #         - "ae592553-251a-4860-8828-a377aed9f636.us-sw-1.cns.joyent.com"
