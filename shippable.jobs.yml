@@ -1,5 +1,5 @@
 jobs:
-# 
+#
 # # jobs for pipelines from CI thru PROD environment
 #
 # ################################
@@ -33,7 +33,7 @@ jobs:
 #       - IN: nginx-dev-params
 #         applyTo: nginx-image
        - TASK: managed
-#         deployMethod: upgrade
+         deployMethod: upgrade
 #     flags:
 #       - hello
 #
